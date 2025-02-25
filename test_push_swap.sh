@@ -44,26 +44,41 @@ test_simple() {
     echo "Test 1: Three numbers"
     ARG="2 1 0"
     echo "Operations:"
-    ./push_swap $ARG | wc -l
+    ops=$(./push_swap $ARG | wc -l)
+    echo $ops
     echo "Result:"
-    ./push_swap $ARG | ./checker_linux $ARG
-	sleep 1
+    result=$(./push_swap $ARG | ./checker_linux $ARG)
+    echo $result
+    if [ $ops -ne 2 ] && [ $ops -ne 3 ]; then
+        echo "Grade: Failure 💀 (must be exactly 2 or 3 operations)"
+    fi
+    sleep 1
     
     echo -e "\nTest 2: Five numbers (first set)"
     ARG="1 5 2 4 3"
     echo "Operations:"
-    ./push_swap $ARG | wc -l
+    ops=$(./push_swap $ARG | wc -l)
+    echo $ops
     echo "Result:"
-    ./push_swap $ARG | ./checker_linux $ARG
-	sleep 1
+    result=$(./push_swap $ARG | ./checker_linux $ARG)
+    echo $result
+    if [ $ops -gt 12 ]; then
+        echo "Grade: Failure 💀 (more than 12 operations)"
+    fi
+    sleep 1
     
     echo -e "\nTest 3: Five numbers (second set)"
     ARG="6 5 7 4 9"
     echo "Operations:"
-    ./push_swap $ARG | wc -l
+    ops=$(./push_swap $ARG | wc -l)
+    echo $ops
     echo "Result:"
-    ./push_swap $ARG | ./checker_linux $ARG
-	sleep 1
+    result=$(./push_swap $ARG | ./checker_linux $ARG)
+    echo $result
+    if [ $ops -gt 12 ]; then
+        echo "Grade: Failure 💀 (more than 12 operations)"
+    fi
+    sleep 1
 }
 
 grade_100() {
