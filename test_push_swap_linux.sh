@@ -26,16 +26,28 @@ test_identity() {
     print_header "IDENTITY TESTS"
     
     echo "Test 1: Single number"
-    ./push_swap 42 | wc -l
-	sleep 1
+    ops=$(./push_swap 42 | wc -l)
+    echo $ops
+    if [ $ops -eq 0 ]; then
+        echo "✅ Correct: no operations needed"
+    fi
+    sleep 1
     
     echo -e "\nTest 2: Four numbers sorted"
-    ./push_swap 0 1 2 3 | wc -l
-	sleep 1
+    ops=$(./push_swap 0 1 2 3 | wc -l)
+    echo $ops
+    if [ $ops -eq 0 ]; then
+        echo "✅ Correct: no operations needed"
+    fi
+    sleep 1
     
     echo -e "\nTest 3: Ten numbers sorted"
-    ./push_swap 0 1 2 3 4 5 6 7 8 9 | wc -l
-	sleep 1
+    ops=$(./push_swap 0 1 2 3 4 5 6 7 8 9 | wc -l)
+    echo $ops
+    if [ $ops -eq 0 ]; then
+        echo "✅ Correct: no operations needed"
+    fi
+    sleep 1
 }
 
 test_simple() {
@@ -55,7 +67,7 @@ test_simple() {
     sleep 1
     
     echo -e "\nTest 2: Five numbers (first set)"
-    ARG="1 5 2 4 3"
+    ARG="4 5 1 3 2"
     echo "Operations:"
     ops=$(./push_swap $ARG | wc -l)
     echo $ops
@@ -68,7 +80,7 @@ test_simple() {
     sleep 1
     
     echo -e "\nTest 3: Five numbers (second set)"
-    ARG="6 5 7 4 9"
+    ARG="5 4 3 2 1"
     echo "Operations:"
     ops=$(./push_swap $ARG | wc -l)
     echo $ops
